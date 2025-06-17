@@ -107,6 +107,12 @@ GameEngine → MapManager: removeEntity(monster)
 GameEngine → LootSystem: dropLoot(monster)
 GameEngine → TurnManager: endPlayerTurn()
 
+Конечный автомат состояний:
+
+![state_machine.png](https://github.com/lilyreber/sd-rogue-like/blob/main/diagrams/state_machine.png)
+
+
+
 ```
 8. Описание данных
 Entity:
