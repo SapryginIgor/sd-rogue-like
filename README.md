@@ -109,7 +109,7 @@ GameEngine → TurnManager: endPlayerTurn()
 
 Конечный автомат состояний:
 
-![state_machine.png](https://github.com/lilyreber/sd-rogue-like/blob/main/diagrams/state_machine.png)
+![state_machine.png](https://github.com/lilyreber/sd-rogue-like/blob/main/diagrams/state_machine.png)](https://github.com/lilyreber/sd-rogue-like/blob/main/diagrams/%20state_machine.png)
 
 
 
