@@ -90,8 +90,6 @@
 
 
 7. Взаимодействия и состояния
-
-Диаграмма состояний (ЛИЛЯ ПЕРЕДЕЛАЙ ТУТ В АВТОМАТ):
 ```
 Player → UIController: нажимает кнопку "атаковать"
 UIController → GameEngine: sendCommand("ATTACK", target)
@@ -106,14 +104,10 @@ Monster → GameEngine: if (hp <= 0) then markDead()
 GameEngine → MapManager: removeEntity(monster)
 GameEngine → LootSystem: dropLoot(monster)
 GameEngine → TurnManager: endPlayerTurn()
-
+```
 Конечный автомат состояний:
 
 ![state_machine.png](https://github.com/lilyreber/sd-rogue-like/blob/main/diagrams/state_machine.png)
-
-
-
-```
 8. Описание данных
 Entity:
 ```
