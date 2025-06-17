@@ -86,38 +86,8 @@
 6. Логическая структура (диаграмма классов)
 
 Классы:
+![Class diagram](https://github.com/lilyreber/sd-rogue-like/blob/main/diagrams/class.png)
 
-```
-Entity (base)
- ├─ Player
- ├─ Monster
- ├─ NPC
-
-
-Item (base)
- ├─ Weapon
- ├─ Armor
- ├─ Consumable 
-
-Map
- ├─ Cell[]
- ├─ has Entity[]
- ├─ has Item[]
-
-Game
- ├─ Map
- ├─ Player
- ├─ Enemy[]
- ├─ Inventory
- ├─ GameState
-```
-Взаимосвязи:
-
-    Player и Monster наследуют Entity
-
-    Entity может иметь Inventory
-
-    Game управляет текущей Map и списками всех активных объектов
 
 7. Взаимодействия и состояния
 
@@ -142,9 +112,11 @@ GameEngine → TurnManager: endPlayerTurn()
 Entity:
 ```
 {
+  "id": 0
   "name": "Orc",
-  "hp": 20,
-  "attack": 4,
+  "health": 20,
+  "position": (10,2)
+  "attackPower": 4,
   "defense": 2,
   "inventory": [ ... ]
 }
@@ -152,17 +124,19 @@ Entity:
 Map Cell:
 ```
 {
+  "x": 0,
+  "y": 5,
   "type": "floor",
   "entity": "Orc",
-  "item": "Sword"
+  "items": ["Sword"]
 }
 ```
 Item:
 ```
 {
-  "id": "healing_potion",
-  "type": "consumable",
-  "effect": "+10 HP"
+  "id": "5",
+  "name": "healing_potion",
+  "weight": "10"
 }
 ```
 9. Паттерны проектирования
