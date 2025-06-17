@@ -81,7 +81,8 @@
 
     SaveSystem — сохранение и загрузка игры
 
-Диаграмму могу нарисовать по запросу (текст или картинка).
+![Component diagram](https://github.com/lilyreber/sd-rogue-like/blob/main/diagrams/components.png)
+
 6. Логическая структура (диаграмма классов)
 
 Классы:
