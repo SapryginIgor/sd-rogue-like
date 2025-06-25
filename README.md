@@ -67,13 +67,11 @@
 
 Компоненты:
 
-    GameEngine — основной управляющий модуль
+    Game — основной управляющий модуль
 
     MapGenerator — генерация уровней
 
     EntitySystem — игрок, монстры, NPC
-
-    TurnManager — контроль пошаговости
 
     UIManager — отображение интерфейса
 
@@ -91,19 +89,17 @@
 
 7. Взаимодействия и состояния
 ```
-Player → UIController: нажимает кнопку "атаковать"
-UIController → GameEngine: sendCommand("ATTACK", target)
-GameEngine → TurnManager: beginPlayerTurn()
+Player -> UI: нажимает кнопку "атаковать"
+UI -> Game: sendCommand("ATTACK", target)
 
-TurnManager → CombatSystem: resolveAttack(player, target)
-CombatSystem → Monster: takeDamage(amount)
+Game -> Player: resolveAttack(player, target)
+Game -> Monster: takeDamage(amount)
 
-Monster → Monster: updateHP(-amount)
-Monster → GameEngine: if (hp <= 0) then markDead()
+Monster -> Monster: updateHP(-amount)
+Monster -> Game: if (hp <= 0) then markDead()
 
-GameEngine → MapManager: removeEntity(monster)
-GameEngine → LootSystem: dropLoot(monster)
-GameEngine → TurnManager: endPlayerTurn()
+Game -> Map: removeEntity(monster)
+Game -> Item: dropLoot(monster)
 ```
 Конечный автомат состояний:
 
@@ -143,17 +139,14 @@ Item:
 ```
 9. Паттерны проектирования
 ```
-    Composite — для сущностей (Entity + компоненты)
+    Factory — создание игрока и врагов, предметов. Фабрика - статический класс со статическим методом создания сущностей через Enum. Используется классом Game.
 
-    Factory — создание врагов, предметов
+    Observer — подписка UI на изменения (HP, инвентарь). Когда происходит обновление состояния игрока и при взаимодействии с интерфейсом - заново отрисовываются UI объекты (Game вызывает метод update у UI, push модель). 
 
-    Observer — подписка UI на изменения (HP, инвентарь)
+    State — состояния игрока/врагов/карты. При сохранении игры (и закрытии игры) все объекты сериализуются на диск в файл. При открытии игры все сущности загружаются из сохраненного состояния.
 
-    State — состояния игрока/врагов
+    Singleton — Game, UI manager, SaveSystem. Все эти объекты имеют единственный instance и глобальную видимость.
 
-    Strategy — поведение врагов (разные типы поведения)
-
-    Singleton — TurnManager, GameEngine, UI manager, SaveSystem
 ```
 
 10. План приемки
